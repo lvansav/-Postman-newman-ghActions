@@ -13,8 +13,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "16.x"
-      - name: Install dependencies
-        run: npm ci
       - name: Install newman
         run: npm install -g newman
       - name: Install newman HTML reporter
@@ -23,7 +21,7 @@ jobs:
         run: mkdir testResults
       - name: Run POSTMAN collection
         if: always()
-        run: newman run petstore_collection.json -r cli,htmlextra --reporter-htmlextra-export ./testResults/htmlreport.html
+        run: npm run newman:run:petstore
       - name: Output the run Details
         if: always()
         uses: actions/upload-artifact@v2
