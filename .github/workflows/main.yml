@@ -1,0 +1,34 @@
+name: Test
+on:
+  push:
+    branches:
+    - main
+jobs:
+  test-api:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: action/checkout@v2
+      - name: Install Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: "14.x"
+      - name: Install newman
+        run: |
+          npm install -g newman
+          npm install -g newman-reporter-htmlextra
+      - name: Make directory for results
+        run: mkdir -p testResults
+      - name: Run POSTMAN collection
+        run: npm run newman:run:petstore
+      - name: Output the run Details
+        uses: actions/upload-artifact@v2
+        with: 
+          name: RunReports
+          path: testResults
+      - name: Deploy report
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: gh-pages
+          folder: testResults
+          target-folder: docs
