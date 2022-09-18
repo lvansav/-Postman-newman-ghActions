@@ -25,11 +25,13 @@ jobs:
         if: always()
         run: newman run petstore_collection.json -r cli,htmlextra --reporter-htmlextra-export ./testResults/htmlreport.html
       - name: Output the run Details
+        if: always()
         uses: actions/upload-artifact@v2
         with:
           name: RunReports
           path: ./testResults
       - name: Deploy report
+        if: always()
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
           branch: gh-pages
