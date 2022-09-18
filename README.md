@@ -34,6 +34,6 @@ In the uploaded collection you may see next folder structure:
 
 Please follow the link below:
 
-<a href="https://lvansav.github.io/-Postman-newman-ghActions/">petstore.collection testing report<>
+<a href="https://lvansav.github.io/-Postman-newman-ghActions/">petstore.collection testing report</a>
 
 
